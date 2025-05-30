@@ -11,6 +11,6 @@ def obtener_minimo_palindromos(cadena):
     return OPT[n]
 
 
-def es_palindromo(s):
+def es_palindromo(s): #->
     return s == s[::-1]
 
