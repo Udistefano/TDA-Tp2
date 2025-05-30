@@ -17,6 +17,7 @@ def generar_cadena_aleatoria(longitud):
     return ''.join(random.choices(string.ascii_lowercase, k=longitud))
 
 
+
 def guardar_caso(nombre, q_values):
     if not os.path.exists(CARPETA_CASOS):
         os.makedirs(CARPETA_CASOS)
