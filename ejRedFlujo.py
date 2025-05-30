@@ -1,6 +1,5 @@
-# Hecho por chat gpt basado en el pseudocodigo, no se si es necesario implementarlo
-
-def existe_camino_residual(grafo, flujo, origen, destino, padres):
+# Implementación del algoritmo Ford-Fulkerson para el problema de asignación de backups a antenas
+def existeCaminoResidual(grafo, flujo, origen, destino, padres):
     """Busca un camino aumentante en el grafo residual usando búsqueda por lista (sin deque)."""
     visitados = [False] * len(grafo)
     cola = [origen]
@@ -17,84 +16,90 @@ def existe_camino_residual(grafo, flujo, origen, destino, padres):
                     return True
     return False
 
-def flujo_maximo_ford_fulkerson(grafo, origen, destino):
-    """Implementación Ford-Fulkerson clásica con lista para BFS."""
+# Implementación Ford-Fulkerson clásica con lista para BFS.
+def flujoMaxFordFulkerson(grafo, origen, destino):
     n = len(grafo)
-    flujo = [[0]*n for _ in range(n)]
+    flujo = []
+    for i in range(n):
+        fila = []
+        for j in range(n):
+            fila.append(0)
+        flujo.append(fila)
     padres = [-1]*n
-    flujo_total = 0
+    flujoTotal = 0
 
-    while existe_camino_residual(grafo, flujo, origen, destino, padres):
+    while existeCaminoResidual(grafo, flujo, origen, destino, padres):
         # Encontrar capacidad mínima residual en el camino encontrado
-        minimo_residual = float('inf')
+        minimoResidual = float('inf')
         nodo = destino
         while nodo != origen:
             anterior = padres[nodo]
             residual = grafo[anterior][nodo] - flujo[anterior][nodo]
-            if residual < minimo_residual:
-                minimo_residual = residual
+            if residual < minimoResidual:
+                minimoResidual = residual
             nodo = anterior
 
         # Aumentar el flujo a lo largo del camino
         nodo = destino
         while nodo != origen:
             anterior = padres[nodo]
-            flujo[anterior][nodo] += minimo_residual
-            flujo[nodo][anterior] -= minimo_residual
+            flujo[anterior][nodo] += minimoResidual
+            flujo[nodo][anterior] -= minimoResidual
             nodo = anterior
 
-        flujo_total += minimo_residual
+        flujoTotal += minimoResidual
 
-    return flujo_total, flujo
+    return flujoTotal, flujo
 
-def asignar_backups_antenas(distancias, D, k, b, n):
-    """
-    Construye el grafo según el pseudocódigo y usa Ford-Fulkerson para asignar backups.
-    distancias: matriz n x n con distancias entre antenas
-    D, k, b, n: parámetros del problema
-    """
-    nodo_fuente = 0
-    nodo_sumidero = 2*n + 1
-    total_nodos = 2*n + 2
-
-    # Crear grafo con capacidades inicializadas en 0
-    grafo = [[0]*total_nodos for _ in range(total_nodos)]
+ # Construye el grafo según el pseudocódigo y usa Ford-Fulkerson para asignar backups.
+def asignarBackupsAntenas(distancias, D, k, b, n):
+    nodoFuente = 0
+    nodoSumidero = 2*n + 1
+    totalNodos = 2*n + 2
+    grafo = []
+    for i in range(totalNodos):  # Crear grafo 
+        fila = []
+        for j in range(totalNodos):
+            fila.append(0)
+        grafo.append(fila)
 
     # Agregar aristas fuente -> Ai con capacidad k
     for i in range(1, n+1):
-        grafo[nodo_fuente][i] = k
+        grafo[nodoFuente][i] = k
 
-    # Agregar aristas Bi -> sumidero con capacidad b
+    # Agregar aristas Bi al sumidero con capacidad b
     for i in range(n+1, 2*n+1):
-        grafo[i][nodo_sumidero] = b
+        grafo[i][nodoSumidero] = b
 
-    # Agregar aristas Ai -> Bj si distancia < D y i != j con capacidad 1
+    # Agregar aristas Ai a Bj si distancia < D y ademas i != j con capacidad 1
     for i in range(n):
         for j in range(n):
             if i != j and distancias[i][j] < D:
-                nodo_requisitor = i + 1
-                nodo_servidor = j + n + 1
-                grafo[nodo_requisitor][nodo_servidor] = 1
+                nodoEntrada = i + 1
+                nodoSalida = j + n + 1
+                grafo[nodoEntrada][nodoSalida] = 1
 
-    # Ejecutar Ford-Fulkerson para flujo máximo
-    flujo_total, flujo = flujo_maximo_ford_fulkerson(grafo, nodo_fuente, nodo_sumidero)
+    # Ejecutar Ford-Fulkerson para flujo max 
+    flujoTotal, flujo = flujoMaxFordFulkerson(grafo, nodoFuente, nodoSumidero)
 
-    # Verificar si se logró el flujo total esperado
-    if flujo_total < n * k:
+    # Verifica si se logró el flujo total esperado
+    if flujoTotal < n * k:
         return "No existe solución posible"
 
-    # Construir conjunto backup para cada antena
-    backups = [[] for _ in range(n)]
+    backups = []
+    for i in range(n):    # backup para cada antena
+        backups.append([])
+        
     for i in range(n):
-        nodo_requisitor = i + 1
+        nodoEntrada = i + 1
         for j in range(n):
-            nodo_servidor = j + n + 1
-            if flujo[nodo_requisitor][nodo_servidor] > 0:
-                backups[i].append(j+1)  # antenas numeradas desde 1
+            nodoSalida = j + n + 1
+            if flujo[nodoEntrada][nodoSalida] > 0:
+                backups[i].append(j+1)  # antenas numeradas desde la 1
 
     return backups
 
-# Ejemplo de prueba
+# Ejemplo
 distancias = [
     [0, 2, 3, 4],
     [2, 0, 1, 5],
@@ -107,10 +112,11 @@ k = 1
 b = 2
 n = 4
 
-resultado = asignar_backups_antenas(distancias, D, k, b, n)
-print("Conjuntos backup por antena:")
+resultado = asignarBackupsAntenas(distancias, D, k, b, n)
+print("Conjuntos de backups por antena:")
 if isinstance(resultado, str):
     print(resultado)
 else:
-    for i, backup in enumerate(resultado, 1):
-        print(f"Antena {i}: {backup}")
+    for i in range(len(resultado)):
+        backup = resultado[i]
+        print("Antena " + str(i+1) + ": " + str(backup) + " backups")
