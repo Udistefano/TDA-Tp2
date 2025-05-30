@@ -24,9 +24,9 @@ def graficar_ej1(path_csv):
         tiempos = [v[1] for v in valores]
         ax.plot(tamanios, tiempos, marker='o', label=tipo.capitalize())
 
-    ax.set_xlabel('Tamaño')
+    ax.set_xlabel('Longitud de cadena')
     ax.set_ylabel('Tiempo (s)')
-    ax.set_title('Ejercicio 1 - Tiempo de ejecución por tipo de entrada')
+    ax.set_title('Obtener mínima cantidad de palíndromos - Tiempo de ejecución por longitud de cadena')
     ax.grid(True, linestyle='--', linewidth=0.5)
     ax.legend()
     plt.tight_layout()
