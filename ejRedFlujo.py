@@ -98,25 +98,3 @@ def asignarBackupsAntenas(distancias, D, k, b, n):
                 backups[i].append(j+1)  # antenas numeradas desde la 1
 
     return backups
-
-# Ejemplo
-distancias = [
-    [0, 2, 3, 4],
-    [2, 0, 1, 5],
-    [3, 1, 0, 2],
-    [4, 5, 2, 0]
-]
-
-D = 3
-k = 1
-b = 2
-n = 4
-
-resultado = asignarBackupsAntenas(distancias, D, k, b, n)
-print("Conjuntos de backups por antena:")
-if isinstance(resultado, str):
-    print(resultado)
-else:
-    for i in range(len(resultado)):
-        backup = resultado[i]
-        print("Antena " + str(i+1) + ": " + str(backup) + " backups")
