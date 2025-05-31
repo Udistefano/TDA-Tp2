@@ -17,11 +17,11 @@ def guardar_dataset(nombre_archivo, matriz, D, k, b):
             f.write(' '.join(map(str, fila)) + '\n')
 
 # Parámetros
-n = 100
-D = 80
-k = 20
-b = 30
+n = 460
+D = 198
+k = 74
+b = 90
 random.seed(42)  # Fijamos semilla para reproducibilidad
 
 matriz = generar_matriz_simetrica(n)
-guardar_dataset("casos_red_de_flujo/matriz5.txt", matriz, D, k, b)
+guardar_dataset("casos_red_de_flujo/matriz8.txt", matriz, D, k, b)
