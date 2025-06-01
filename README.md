@@ -37,10 +37,12 @@ Parado sobre la carpeta principal TDA-Tp2
 
 - Para generar los casos de prueba aleatorios:
     - ´python3 EJ1_programacion_dinamica/generar_casos_palindromos.py´
+    
     Se guardan dentro de la carpeta principal del ejercicio "EJ1_programacion_dinamica" en una carpeta llamada "casos_palindromos"
 
 - Para ejecutar los casos de prueba y tomar el tiempo de cada uno:
     - ´python3 EJ1_programacion_dinamica/ejecutar_casos_palindromos.py´
+
     Se guardan en una carpeta llamada resultados dentro de casos_palindromos, dentro de EJ1_programacion_dinamica. Y tambien se agrega una archivo csv con cada caso y su tiempo.
 - Para generar los graficos utilizando estos resultados:
     - ´python3 EJ1_programacion_dinamica/generar_graficos.py´
