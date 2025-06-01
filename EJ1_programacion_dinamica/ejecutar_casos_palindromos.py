@@ -6,8 +6,8 @@ import csv
 from ejProgDinamica import obtener_minimo_palindromos
 
 CARPETA_CASOS = "casos_palindromos"
-CARPETA_RESULTADOS = os.path.join(CARPETA_CASOS, "resultados")
-ARCHIVO_TIEMPOS = os.path.join(CARPETA_CASOS, "tiempos_problema_1.csv")
+CARPETA_RESULTADOS = os.path.join("EJ1_programacion_dinamica", CARPETA_CASOS, "resultados")
+ARCHIVO_TIEMPOS = os.path.join("EJ1_programacion_dinamica", CARPETA_CASOS, "tiempos_problema_1.csv")
 
 
 
@@ -26,11 +26,12 @@ def guardar_resultado(nombre, cantidad_minima):
 
 def main():
     tiempos = []
-    for archivo in sorted(os.listdir(CARPETA_CASOS)):
+    path_general = os.path.join("EJ1_programacion_dinamica", CARPETA_CASOS)
+    for archivo in sorted(os.listdir(path_general)):
         if not archivo.endswith(".txt"):
             continue
         nombre = archivo[:-4]
-        path = os.path.join(CARPETA_CASOS, archivo)
+        path = os.path.join("EJ1_programacion_dinamica", CARPETA_CASOS, archivo)
         print(f"Procesando: {nombre}")
 
         q = leer_caso(path)

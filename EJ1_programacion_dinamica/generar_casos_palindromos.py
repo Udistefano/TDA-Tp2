@@ -14,11 +14,11 @@ def generar_cadena_aleatoria(longitud):
     return ''.join(random.choices(string.ascii_lowercase, k=longitud))
 
 
-
 def guardar_caso(nombre, q_values):
-    if not os.path.exists(CARPETA_CASOS):
-        os.makedirs(CARPETA_CASOS)
-    path = os.path.join(CARPETA_CASOS, f"{nombre}.txt")
+    path_general = os.path.join("EJ1_programacion_dinamica", CARPETA_CASOS)
+    if not os.path.exists(path_general):
+        os.makedirs(path_general)
+    path = os.path.join("EJ1_programacion_dinamica", CARPETA_CASOS, f"{nombre}.txt")
     with open(path, 'w') as f:
         f.write(q_values)
     print(f"Caso guardado: {path}")

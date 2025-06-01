@@ -72,7 +72,7 @@ def graficar_ajuste_teorico_ej1(path_csv):
 
 
 if __name__ == "__main__":
-    path_ej1 = os.path.join("casos_palindromos", "tiempos_problema_1.csv")
+    path_ej1 = os.path.join("EJ1_programacion_dinamica", "casos_palindromos", "tiempos_problema_1.csv")
 
     graficar_ej1(path_ej1)
     graficar_ajuste_teorico_ej1(path_ej1)
