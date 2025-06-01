@@ -1,5 +1,5 @@
 import random
-
+#Codigo para generar matrices
 def generar_matriz_simetrica(n, min_val=1, max_val=20):
     matriz = [[0]*n for _ in range(n)]
     for i in range(n):
@@ -16,12 +16,12 @@ def guardar_dataset(nombre_archivo, matriz, D, k, b):
         for fila in matriz:
             f.write(' '.join(map(str, fila)) + '\n')
 
-# Parámetros
+# parametros 
 n = 460
 D = 198
 k = 74
 b = 90
-random.seed(42)  # Fijamos semilla para reproducibilidad
+random.seed(42)  # semilla 
 
 matriz = generar_matriz_simetrica(n)
 guardar_dataset("casos_red_de_flujo/matriz8.txt", matriz, D, k, b)

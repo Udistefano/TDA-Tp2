@@ -1,14 +1,14 @@
 import ejRedFlujo
 import time
-
+# Codigo para leer la matriz.txt y ejecutar el algoritmo de asignación de backups
 def leerDatasetDesdeArchivo(nombre_archivo):
     with open(nombre_archivo, 'r') as archivo:
         lineas = archivo.readlines()
         
-        # Primera línea: n D k b
+        # la primera linea es n D k b
         n, D, k, b = map(int, lineas[0].strip().split())
 
-        # Siguientes n líneas: matriz de distancias
+        # siguientes lineas son la matriz de distancias
         distancias = []
         for i in range(1, n+1):
             fila = list(map(int, lineas[i].strip().split()))
