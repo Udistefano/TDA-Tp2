@@ -1,1 +1,0 @@
-# Este lo podemos hacer con pulp en python o con LINDO

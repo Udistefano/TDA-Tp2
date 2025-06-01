@@ -16,7 +16,7 @@ def leerDatasetDesdeArchivo(nombre_archivo):
 
     return distancias, D, k, b, n
 
-nombre_archivo = "casos_red_de_Flujo/matriz7.txt"
+nombre_archivo = "casos_red_de_flujo/matriz1.txt"
 distancias, D, k, b, n = leerDatasetDesdeArchivo(nombre_archivo)
 inicio = time.time()
 resultado = ejRedFlujo.asignarBackupsAntenas(distancias, D, k, b, n)
