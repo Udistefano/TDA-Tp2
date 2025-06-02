@@ -1,8 +1,8 @@
 import ejRedFlujo
 import time
 # Codigo para leer la matriz.txt y ejecutar el algoritmo de asignación de backups
-def leerDatasetDesdeArchivo(nombre_archivo):
-    with open(nombre_archivo, 'r') as archivo:
+def leerDatasetDesdeArchivo(nombreArchivo):
+    with open(nombreArchivo, 'r') as archivo:
         lineas = archivo.readlines()
         
         # la primera linea es n D k b
@@ -16,12 +16,12 @@ def leerDatasetDesdeArchivo(nombre_archivo):
 
     return distancias, D, k, b, n
 
-nombre_archivo = "casos_red_de_flujo/matriz1.txt"
-distancias, D, k, b, n = leerDatasetDesdeArchivo(nombre_archivo)
+nombreArchivo = "EJ3 - Redes de Flujo/casos_red_de_flujo/matriz2.txt"
+distancias, D, k, b, n = leerDatasetDesdeArchivo(nombreArchivo)
 inicio = time.time()
 resultado = ejRedFlujo.asignarBackupsAntenas(distancias, D, k, b, n)
 fin = time.time()
-tiempo_total = fin - inicio
+tiempoTotal = fin - inicio
 
 print("Conjuntos de backups por antena:")
 if isinstance(resultado, str):
@@ -31,4 +31,4 @@ else:
         backup = resultado[i]
         print("Antena " + str(i+1) + ": " + "tiene como backup la antena " + str(backup))
 
-print(f"Tiempo de ejecución: {tiempo_total:.4f} segundos")
+print(f"Tiempo de ejecución: {tiempoTotal:.4f} segundos")

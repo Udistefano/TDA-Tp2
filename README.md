@@ -49,9 +49,17 @@ Parado sobre la carpeta principal TDA-Tp2
 
     Esto muestra los gráficos directamente pero se guardaron unos fijos en una carpteta llamada "graficos_tiempos"
 
+### ejercicio 3: Redes de flujo
 
+* Generar casos de prueba:
 
+Parado sobre la carpeta principal TDA-Tp2
 
+- Para generar los casos de prueba aleatorios:
+    - ´python3 EJ3 - Redes de Flujo/generarMatrizFlujo.py´
+    En ese archivo vamos a poder definir los parametros y construir matrices a partir de ellos.
+    Se guardan dentro de la carpeta principal del ejercicio "EJ3 - Redes de Flujo" en una carpeta llamada "casos_red_de_flujo"
 
-
-
+- Para ejecutar los casos de prueba y tomar el tiempo de cada uno:
+    - ´python3 EJ3 - Redes de Flujo/ejecutarRedFlujo.py´
+    Dentro de este codigo tenemos la variable "nombreArchivo" en la cual debemos poner la matriz que queremos ejecutar. Una vez corriendo este codigo, nos dará el resultado de cada antena con su backup
